@@ -48,6 +48,9 @@ class Controller(connection.Data):
             elif(self.data.cmd == 's'):
                 self.p.stop()
                 self.data.cmd = ' '
+            elif(self.data.cmd == 'i'):
+                self.p.seekInitialize(self.p.timeElapsed)
+                self.data.cmd = ' '
             elif(self.data.cmd == 'n'):
                 self.data.cmd = ' '
                 pass
@@ -57,6 +60,7 @@ class Controller(connection.Data):
         self.p.play()
         self.startRecv()
         self.startTakingCommands()
+        # self.data.sendData('i', self.p.timeElapsed)
         self.timeout = 1
 
         while self.data.sendOn:
