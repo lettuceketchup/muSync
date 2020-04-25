@@ -1,7 +1,7 @@
 import time
 import pygame
 pygame.mixer.init()
-pygame.mixer.music.load("../bensound-sunny.mp3")
+pygame.mixer.music.load("./music/bensound-sunny.mp3")
 
 class Player():
 	def __init__(self):
