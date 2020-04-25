@@ -1,26 +1,15 @@
-import player, connection
-import threading, time
+import player
+import connection
+import threading
+import time
+
 
 class Controller(connection.Data):
-    def __init__(self, conn, player):
+    def __init__(self, player):
         # player.Player.__init__(self)
-        connection.Data.__init__(self, conn)
-        self.data = connection.Data(conn)
+        connection.Data.__init__(self)
         self.p = player
 
-    def check(self):
-        time.sleep(2)
-        if(self.value != ''):
-            return
-        print(' ')
-
-    def startRecv(self):
-        self.threadRecv = threading.Thread(target=self.data.receiveData)
-        self.threadRecv.start()
-
-    def stopRecv(self):
-        self.threadRecv.join()
-        self.sendOn = False
 
     def startTakingCommands(self):
         self.threadCmd = threading.Thread(target=self.playerCommands)
@@ -51,7 +40,7 @@ class Controller(connection.Data):
             elif(self.data.cmd == 'n'):
                 self.data.cmd = ' '
                 pass
-    
+
     def startPlayer(self):
         self.p = player.Player()
         self.p.play()
@@ -61,14 +50,14 @@ class Controller(connection.Data):
 
         while self.data.sendOn:
             self.value = ''
-            threading.Thread(target = self.check).start()
+            threading.Thread(target=self.check).start()
             self.value = input()
 
             if(self.p.status['ended']):
                 break
             if(self.value == ''):
                 continue
-            
+
             self.data.sendData(self.value)
             print(self.p.status)
         self.stopTakingCommands()
