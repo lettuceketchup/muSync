@@ -65,7 +65,7 @@ class Controller(connection.Data):
 
         while self.data.sendOn:
             self.value = ''
-            threading.Thread(target = self.check).start()
+            # threading.Thread(target = self.check).start()
             self.value = input()
 
             if(self.p.status['ended']):
@@ -74,6 +74,6 @@ class Controller(connection.Data):
                 continue
             
             self.data.sendData(self.value)
-            print(self.p.status)
+            # print(self.p.status)
         self.stopTakingCommands()
         self.stopRecv()

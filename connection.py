@@ -12,7 +12,7 @@ class Data():
 		outTime = str(timeElapsed)
 		self.cmd = cmd[0]
 		out_data = self.cmd + outTime
-		print(out_data)
+		# print(out_data)
 		self.conn.sendall(bytes(out_data,'UTF-8'))
 
 	def receiveData(self):
@@ -27,7 +27,7 @@ class Data():
 			if (self.cmd == 'q'):
 				self.recvOn = False
 				return
-			print(self.cmd, self.timeElapsed)
+			# print(self.cmd, self.timeElapsed)
 
 
 LOCALHOST = "127.0.0.1"

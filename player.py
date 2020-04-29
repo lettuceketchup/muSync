@@ -41,6 +41,7 @@ class Player():
 
 	def stop(self):
 		self.status['playing'] = False
+		self.status['paused'] = False
 		self.status['stopped'] = True
 		pygame.mixer.music.stop()
 		self.timeElapsed = self.currentPos()

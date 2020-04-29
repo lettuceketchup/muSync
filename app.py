@@ -26,10 +26,11 @@ class App(player.Player):
                 break
             else:
                 print("Enter a valid choice.")
-            print(self.choice)
+            # print(self.choice)
             time.sleep(1/60)
 
     def play(self):
+        print('p: play/pause/resume\ns: stop\nq:quit')
         controller.Controller(self.conn, player).startPlayer()
 
     def quit(self):
